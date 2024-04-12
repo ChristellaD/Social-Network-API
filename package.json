@@ -16,6 +16,7 @@
     "url": "https://github.com/ChristellaD/Social-Network-API/issues"
   },
   "homepage": "https://github.com/ChristellaD/Social-Network-API#readme",
+  "type":"module",
   "dependencies": {
     "express": "^4.19.2",
     "mongoose": "^8.3.1"

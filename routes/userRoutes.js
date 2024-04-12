@@ -1,6 +1,5 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const User = require('../models/user');
 
 // GET all users
 router.get('/users', async (req, res) => {
@@ -129,4 +128,4 @@ router.delete('/users/:userId/friends/:friendId', async (req, res) => {
     }
 });
 
-module.exports = router;
+export { router as userRoutes };
