@@ -22,13 +22,11 @@ const reactionSchema = new Schema({
 });
 
 reactionSchema.path('createdAt').get(function(value) {
-    // Format the date using your preferred format (e.g., ISO string)
     return value.toISOString();
 });
 
 module.exports = reactionSchema;
 
-// Thought Schema
 const thoughtSchema = new Schema({
     thoughtText: {
         type: String,
@@ -47,14 +45,14 @@ const thoughtSchema = new Schema({
     reactions: [reactionSchema]
 });
 
-// Create a virtual field 'reactionCount' to retrieve the length of the 'reactions' array
+// create a virtual field 'reactionCount' to retrieve the length of the 'reactions' array
 thoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
 });
 
-// Create a getter method for 'createdAt' to format the timestamp on query
+// create a getter method for 'createdAt' to format the timestamp on query
 thoughtSchema.path('createdAt').get(function(value) {
-    // Format the date using your preferred format (e.g., ISO string)
+    // format the date using your preferred format (e.g., ISO string)
     return value.toISOString();
 });
 

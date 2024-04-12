@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-// GET all users
+// all users
 router.get('/users', async (req, res) => {
     try {
         const users = await User.find();
@@ -12,7 +12,7 @@ router.get('/users', async (req, res) => {
     }
 });
 
-// GET a single user by its _id and populated thought and friend data
+// a single user by id and populates thought and friend data
 router.get('/users/:userId', async (req, res) => {
     try {
         const user = await User.findById(req.params.userId)
@@ -30,7 +30,7 @@ router.get('/users/:userId', async (req, res) => {
     }
 });
 
-// POST a new user
+// new user
 router.post('/users', async (req, res) => {
     try {
         const { username, email } = req.body;
@@ -42,7 +42,7 @@ router.post('/users', async (req, res) => {
     }
 });
 
-// PUT to update a user by its _id
+// update user by id
 router.put('/users/:userId', async (req, res) => {
     try {
         const { username, email } = req.body;
@@ -61,7 +61,7 @@ router.put('/users/:userId', async (req, res) => {
     }
 });
 
-// DELETE to remove user by its _id
+// remove user by id
 router.delete('/users/:userId', async (req, res) => {
     try {
         const deletedUser = await User.findByIdAndDelete(req.params.userId);
@@ -101,23 +101,23 @@ router.post('/users/:userId/friends/:friendId', async (req, res) => {
     }
 });
 
-// DELETE to remove a friend from a user's friend list
+// remove a friend from a user's friend list
 router.delete('/users/:userId/friends/:friendId', async (req, res) => {
     try {
         const { userId, friendId } = req.params;
 
-        // Find the user by userId
+        // find the user by userId
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Check if the friendId exists in the user's friend list
+        // check if the friendId exists in the user's friend list
         if (!user.friends.includes(friendId)) {
             return res.status(400).json({ message: 'Friend does not exist in the user\'s friend list' });
         }
 
-        // Remove the friendId from the user's friend list
+        // remove the friendId from the user's friend list
         user.friends = user.friends.filter(id => id !== friendId);
         await user.save();
 

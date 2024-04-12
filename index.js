@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(express.json());
 
-// Connect to MongoDB
+// connect to MongoDB
 mongoose.connect("mongodb+srv://corvvus:ncwkq71ce9NYomg7@cluster0.xiwc049.mongodb.net/social-network?retryWrites=true&w=majority", {
 })
 .then(() => {
@@ -22,7 +22,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/thoughts', thoughtRoutes);
 
 
-// Start the server
+// start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
